@@ -1,0 +1,17 @@
+小米路由器刷机
+步骤
+1.刷开发板固件：最新版ssh失败，我用次新版https://bigota.miwifi.com/xiaoqiang/rom/r1d/brcm4709_hdk_78037_2.25.202.bin
+2.开启ssh： http://d.miwifi.com/rom/ssh 
+下载SSH工具包，将ssh_rom.bin文件拷贝到U盘根目录，然后长按RESET键进入U盘恢复模式
+3.刷CFE（刷番茄系统的工具）：下载：
+用cfeedit.exe修改cfe_stock.bin里面的mac地址为自己路由器，另存为cfe.bin，把backup.sh,cfe.bin,flash-cfe.sh放U盘根目录
+ssh root@192.168.31.1
+
+4.登录CFE刷番茄，番茄系统下载：https://freshtomato.org/downloads/freshtomato-arm/2023/2023.4/K26ARM/，选r1d那个，也可以换其他年份的
+
+
+
+root密码 7d5930c9
+http://192.168.31.1/cgi-bin/luci/;stok=7c38d7778745e24e0fdd37999da5c95d/web/init/guide#privacy=0
+http://192.168.31.1/cgi-bin/luci/;stok=7c38d7778745e24e0fdd37999da5c95d/api/misystem/set_config_iotdev?bssid=Xiaomi&user_id=longdike&ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20's%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg'%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B 
+http://192.168.31.1/cgi-bin/luci/;stok=1ce445aad44e9eae00ea652c545cf827/api/misystem/set_config_iotdev?bssid=Xiaomi&user_id=longdike&ssid=-h%3B%20echo%20-e%20'admin%5Cnadmin'%20%7C%20pa
