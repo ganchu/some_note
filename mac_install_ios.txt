@@ -1,5 +1,6 @@
 mac 安装 ios 虚拟机，ipa签名工具，ios安装 ipa 
 
+
 1.安装 xcode，里面有个 simulator（ios 模拟器）可以选择各种机型，运行后登录 appid
 2.mac 安装爱思助手电脑版，下载想安装的 ipa
 3.爱思助手工具箱-IPA 签名-选择对应 ipa 文件 用 appid 签名，设备标识这项我获取到是 ffffffffffffffffffffffffffffffffffffffff
@@ -9,4 +10,7 @@ UDID获取方法： ios访问www.udids.cn，安装描述文件，然后就能获
 文件路径如：/Users/a3/Downloads/i4ToolsDownloads/App/支付宝_10.6.58/Payload/AlipayWallet.app
 
 
+
 IPA 商店：https://ipa.store/
+
+单纯是想玩 ios 游戏的话，可以安装 PlayCover，然后添加IPA 源https://decrypt.day/library
