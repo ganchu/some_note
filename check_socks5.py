@@ -1,25 +1,35 @@
-import socks
-import socket
+import pycurl #pip3 install pycurl
+from io import BytesIO
 
 def test_socks5(host, port, username, password):
-    socks.set_default_proxy(socks.SOCKS5, host, port, username=username, password=password)
-    socket.setdefaulttimeout(10)  # 設置超時時間
-
+    buffer = BytesIO()
+    c = pycurl.Curl()
+    
+    # 设置代理
+    c.setopt(pycurl.PROXY, host)
+    c.setopt(pycurl.PROXYPORT, port)
+    c.setopt(pycurl.PROXYTYPE, pycurl.PROXYTYPE_SOCKS5)
+    c.setopt(pycurl.PROXYUSERPWD, f'{username}:{password}')
+    
+    # 设置请求
+    c.setopt(pycurl.URL, 'http://httpbin.org/ip')
+    c.setopt(pycurl.WRITEDATA, buffer)
+    
     try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect(('www.baidu.com', 80))  # 嘗試連接 Google
-        print("連接成功！SOCKS5 代理可用")
+        c.perform()
+        body = buffer.getvalue().decode('utf-8')
+        print(f"代理返回结果: {body}")
         return True
     except Exception as e:
-        print(f"連接失敗：{e}")
+        print(f"连接失败：{e}")
         return False
     finally:
-        s.close()
+        c.close()
 
-# 替換為您的 SOCKS5 代理伺服器資訊
-socks5_host = '203.6.230.122'
-socks5_port = 20401
-socks5_username = 'user1'
+# 测试代理
+socks5_host = '203.6.230.110'
+socks5_port = 20404
+socks5_username = 'user112'
 socks5_password = '078Su4'
 
 if test_socks5(socks5_host, socks5_port, socks5_username, socks5_password):
